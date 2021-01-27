@@ -1,0 +1,579 @@
+
+<ScreenOne>:
+    canvas.before:
+        Color:
+            rgb:(0.95,0.95,0.95)
+        Rectangle:
+            size: self.size
+
+
+
+
+
+<ScreenTwo>:
+    canvas.before:
+        Color:
+            rgb:(0.95,0.95,0.95)
+        Rectangle:
+            size: self.size
+    FloatLayout:
+        id: flt
+        size: root.size
+
+        Label:
+            text: 'Select The Type of Buisness:'
+            pos_hint:{'center_y': 0.95,'center_x':0.5}
+            color: 0,0,0,1
+            font_size: 30
+            underline: True
+            bold: True
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint:{'y':0.78,'center_x':0.5}
+            size_hint: 0.8,0.7
+
+            Image:
+                source: 'Images\Public Service.png'
+                size_hint: 0.15,0.15
+            Button:
+                size_hint: 0.2,0.1
+
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.testps()
+                text: 'Public Services'
+                background_normal: 'butup.png'
+                background_down: 'butdown.png'
+                color: 0,0,0,1
+                font_size: 20
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint:{'y':0.61,'center_x':0.5}
+            size_hint: 0.8,0.7
+            Image:
+                source: 'Images\Retailnfood.png'
+                size_hint: 0.15,0.15
+            Button:
+                size_hint: 0.2,0.1
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.testrnf()
+                text: 'Retail and Accomodation'
+                background_normal: 'butup.png'
+                background_down: 'butdown.png'
+                color: 0,0,0,1
+                font_size: 20
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint:{'y':0.44,'center_x':0.5}
+            size_hint: 0.8,0.7
+            Image:
+                source: 'Images\Manu.png'
+
+                size_hint: 0.15,0.15
+            Button:
+                size_hint: 0.2,0.1
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.testmanu()
+                text: 'Manufacturing'
+                background_normal: 'butup.png'
+                background_down: 'butdown.png'
+                color: 0,0,0,1
+                font_size: 20
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint:{'y':0.27,'center_x':0.5}
+            size_hint: 0.8,0.7
+            Image:
+                source: 'Images\Bank.png'
+                size_hint: 0.15,0.15
+            Button:
+                size_hint: 0.2,0.1
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.testbank()
+                text: 'Banking and Financials'
+                background_normal: 'butup.png'
+                background_down: 'butdown.png'
+                color: 0,0,0,1
+                font_size: 20
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint:{'y':0.1,'center_x':0.5}
+            size_hint: 0.8,0.7
+            Image:
+                source: 'Images\Elip.png'
+                size_hint: 0.15,0.15
+            Button:
+                size_hint: 0.2,0.1
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.testother()
+                text: 'Other'
+                background_normal: 'butup.png'
+                background_down: 'butdown.png'
+                color: 0,0,0,1
+                font_size: 20
+
+
+<PublicService>:
+    scrooler:scrooler
+    boxy:boxy
+    canvas.before:
+        Color:
+            rgb:(0.95,0.95,0.95)
+        Rectangle:
+            size: self.size
+
+    FloatLayout:
+        size: root.size
+
+
+
+
+
+        ScrollView:
+            size_hint: 1,0.95
+            id: scrooler
+            GridLayout:
+                size_hint_y: None
+                size: self.size
+                cols:1
+                id:boxy
+                row_default_height: root.height * 0.2
+                height: self.minimum_height
+
+
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'top': 0.999,'center_x': 0.5}
+            size_hint: 1,0.05
+            canvas.before:
+                Color:
+                    rgb:(0.6,0.6,0.6)
+
+                Rectangle:
+                    size:self.width, self.height-(self.height-self.y)-10
+                    pos: self.x,self.y-10
+            Button:
+                size_hint: 0.2,1
+                pos_hint: {'top': 1,'left': 1}
+                text: 'Back'
+                on_press:
+                    root.manager.transition.direction = 'right'
+
+                    root.manager.current = 'screen2'
+
+            TextInput:
+                id: searchbar
+                #size_hint: 0.2,1
+
+            Button:
+                size_hint: 0.2,1
+                text: 'Search'
+                on_press:
+                    root.searcher()
+            Spinner:
+                #size_hint: None, None
+                #size: 100, 44
+                size_hint: 0.35,1
+                id: choser
+                pos_hint: {'top': 1,'right': 1}
+                text: 'Public Service'
+                values: 'Public Administration', 'Transportation', 'Information','Educational','Health Care','Utilities'
+                on_text:
+                    root.tester2()
+        Button:
+            pos_hint:{'x':0.1, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Previous Page'
+            on_press:
+                root.prev()
+        Button:
+            pos_hint:{'right':0.9, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Next Page'
+            on_press:
+                root.next()
+
+<Retailnfood>:
+    scrooler:scrooler
+    boxy:boxy
+    canvas.before:
+        Color:
+            rgb:(0.95,0.95,0.95)
+        Rectangle:
+            size: self.size
+
+    FloatLayout:
+        size: root.size
+
+
+
+
+
+        ScrollView:
+            size_hint: 1,0.95
+            id: scrooler
+            GridLayout:
+                size_hint_y: None
+                size: self.size
+                cols:1
+                id:boxy
+                row_default_height: root.height * 0.2
+                height: self.minimum_height
+
+
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'top': 0.999,'center_x': 0.5}
+            size_hint: 1,0.05
+            canvas.before:
+                Color:
+                    rgb:(0.6,0.6,0.6)
+
+                Rectangle:
+                    size:self.width, self.height-(self.height-self.y)-10
+                    pos: self.x,self.y-10
+            Button:
+                size_hint: 0.2,1
+                pos_hint: {'top': 1,'left': 1}
+                text: 'Back'
+                on_press:
+                    root.manager.transition.direction = 'right'
+
+                    root.manager.current = 'screen2'
+
+            TextInput:
+                id: searchbar
+                #size_hint: 0.2,1
+
+            Button:
+                size_hint: 0.2,1
+                text: 'Search'
+                on_press:
+                    root.searcher()
+            Spinner:
+                #size_hint: None, None
+                #size: 100, 44
+                size_hint: 0.35,1
+                id: choser
+                pos_hint: {'top': 1,'right': 1}
+                text: 'Retail and Food'
+                values: 'Retail', 'Wholesale', 'Accommodation'
+                on_text:
+                    root.tester2()
+        Button:
+            pos_hint:{'x':0.1, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Previous Page'
+            on_press:
+                root.prev()
+        Button:
+            pos_hint:{'right':0.9, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Next Page'
+            on_press:
+                root.next()
+
+
+<Manufacturing>:
+    scrooler:scrooler
+    boxy:boxy
+    canvas.before:
+        Color:
+            rgb:(0.95,0.95,0.95)
+        Rectangle:
+            size: self.size
+
+    FloatLayout:
+        size: root.size
+
+
+
+
+
+        ScrollView:
+            size_hint: 1,0.95
+            id: scrooler
+            GridLayout:
+                size_hint_y: None
+                size: self.size
+                cols:1
+                id:boxy
+                row_default_height: root.height * 0.2
+                height: self.minimum_height
+
+
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'top': 0.999,'center_x': 0.5}
+            size_hint: 1,0.05
+            canvas.before:
+                Color:
+                    rgb:(0.6,0.6,0.6)
+
+                Rectangle:
+                    size:self.width, self.height-(self.height-self.y)-10
+                    pos: self.x,self.y-10
+            Button:
+                size_hint: 0.2,1
+                pos_hint: {'top': 1,'left': 1}
+                text: 'Back'
+                on_press:
+                    root.manager.transition.direction = 'right'
+
+                    root.manager.current = 'screen2'
+
+            TextInput:
+                id: searchbar
+                #size_hint: 0.2,1
+
+            Button:
+                size_hint: 0.2,1
+                text: 'Search'
+                on_press:
+                    root.searcher()
+            Spinner:
+                #size_hint: None, None
+                #size: 100, 44
+                size_hint: 0.35,1
+                id: choser
+                pos_hint: {'top': 1,'right': 1}
+                text: 'General Manufacturing'
+                values: 'Manufacturing', 'Construction', 'Primary Industry'
+                on_text:
+                    root.tester2()
+        Button:
+            pos_hint:{'x':0.1, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Previous Page'
+            on_press:
+                root.prev()
+        Button:
+            pos_hint:{'right':0.9, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Next Page'
+            on_press:
+                root.next()
+
+
+
+<Banking>:
+    scrooler:scrooler
+    boxy:boxy
+    canvas.before:
+        Color:
+            rgb:(0.95,0.95,0.95)
+        Rectangle:
+            size: self.size
+
+    FloatLayout:
+        size: root.size
+
+
+
+
+
+        ScrollView:
+            size_hint: 1,0.95
+            id: scrooler
+            GridLayout:
+                size_hint_y: None
+                size: self.size
+                cols:1
+                id:boxy
+                row_default_height: root.height * 0.2
+                height: self.minimum_height
+
+
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'top': 0.999,'center_x': 0.5}
+            size_hint: 1,0.05
+            canvas.before:
+                Color:
+                    rgb:(0.6,0.6,0.6)
+
+                Rectangle:
+                    size:self.width, self.height-(self.height-self.y)-10
+                    pos: self.x,self.y-10
+            Button:
+                size_hint: 0.2,1
+                pos_hint: {'top': 1,'left': 1}
+                text: 'Back'
+                on_press:
+                    root.manager.transition.direction = 'right'
+
+                    root.manager.current = 'screen2'
+
+            TextInput:
+                id: searchbar
+                #size_hint: 0.2,1
+
+            Button:
+                size_hint: 0.2,1
+                text: 'Search'
+                on_press:
+                    root.searcher()
+            Spinner:
+                #size_hint: None, None
+                #size: 100, 44
+                size_hint: 0.35,1
+                id: choser
+                pos_hint: {'top': 1,'right': 1}
+                text: 'Banking'
+                values: 'Management', 'Professional', 'Finance','Administrative','Real Estate'
+                on_text:
+                    root.tester2()
+        Button:
+            pos_hint:{'x':0.1, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Previous Page'
+            on_press:
+                root.prev()
+        Button:
+            pos_hint:{'right':0.9, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Next Page'
+            on_press:
+                root.next()
+
+<Other>:
+    scrooler:scrooler
+    boxy:boxy
+    canvas.before:
+        Color:
+            rgb:(0.95,0.95,0.95)
+        Rectangle:
+            size: self.size
+
+    FloatLayout:
+        size: root.size
+
+
+
+
+
+        ScrollView:
+            size_hint: 1,0.95
+            id: scrooler
+            GridLayout:
+                size_hint_y: None
+                size: self.size
+                cols:1
+                id:boxy
+                row_default_height: root.height * 0.2
+                height: self.minimum_height
+
+
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            pos_hint: {'top': 0.999,'center_x': 0.5}
+            size_hint: 1,0.05
+            canvas.before:
+                Color:
+                    rgb:(0.6,0.6,0.6)
+
+                Rectangle:
+                    size:self.width, self.height-(self.height-self.y)-10
+                    pos: self.x,self.y-10
+            Button:
+                size_hint: 0.2,1
+                pos_hint: {'top': 1,'left': 1}
+                text: 'Back'
+                on_press:
+                    root.manager.transition.direction = 'right'
+
+                    root.manager.current = 'screen2'
+
+            TextInput:
+                id: searchbar
+                #size_hint: 0.2,1
+
+            Button:
+                size_hint: 0.2,1
+                text: 'Search'
+                on_press:
+                    root.searcher()
+            Spinner:
+                #size_hint: None, None
+                #size: 100, 44
+                size_hint: 0.35,1
+                id: choser
+                pos_hint: {'top': 1,'right': 1}
+                text: 'Other'
+                values: 'Other Services', 'Arts', 'N/A'
+                on_text:
+                    root.tester2()
+        Button:
+            pos_hint:{'x':0.1, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Previous Page'
+            on_press:
+                root.prev()
+        Button:
+            pos_hint:{'right':0.9, 'y': 0}
+            size_hint:0.2,0.05
+            text: 'Next Page'
+            on_press:
+                root.next()
+
+
+
+<Manager>
+    id: screen_manager
+
+    screen_one: screen_one
+    screen_two: screen_two
+    retailnfood: retailnfood
+    publicservice: publicservice
+    manufacturing: manufacturing
+    banking:banking
+    other:other
+
+    ScreenOne:
+        id: screen_one
+        name: "screen1"
+        manager: screen_manager
+    ScreenTwo:
+        id: screen_two
+        name: "screen2"
+        manager: screen_manager
+
+    PublicService:
+        id: publicservice
+        name: 'PublicService'
+        manager: screen_manager
+    Retailnfood:
+        id: retailnfood
+        name: 'Retailnfood'
+        manager: screen_manager
+    Manufacturing:
+        id: manufacturing
+        name: 'Manufacturing'
+        manager: screen_manager
+    Banking:
+        id: banking
+        name: 'Banking'
+        manager: screen_manager
+    Other:
+        id: other
+        name: "Other"
+        manager: screen_manager
